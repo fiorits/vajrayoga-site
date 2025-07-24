@@ -4,9 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vajra Yoga - por Gabriel Shisil</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧘</text></svg>">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.1.0/fontfaceobserver.standalone.js"></script>
 
   <style>
     /* ============================================
@@ -16,10 +20,11 @@
     :root {
       --cor-fundo: #FDFBF8;
       --cor-texto: #4a4a4a;
-      --cor-verde: #2d3a3a;
-      --cor-dourado-1: #c5a47e;
-      --cor-dourado-2: #e8d5b5;
-      --cor-laranja: #E67E22;
+      --cor-verde-forte: #2d3a3a;
+      --cor-verde-claro-1: #28a745;
+      --cor-verde-claro-2: #218838;
+      --cor-dourado-1: #B5915E;
+      --cor-dourado-2: #D1B38C;
     }
 
     /* Reset básico e fontes */
@@ -40,6 +45,12 @@
       line-height: 1.7;
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
+      opacity: 0; 
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    html.fonts-loaded body {
+      opacity: 1;
     }
 
     .container {
@@ -48,11 +59,15 @@
       padding: 20px;
     }
 
-    h1, h2 {
+    /* Estilo base para todos os títulos principais */
+    h1, h2, h3 {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      line-height: 1.2;
-      /* Efeito de degradê para os títulos */
+      color: var(--cor-verde-forte); /* Cor padrão para títulos */
+    }
+
+    /* Classe específica para o efeito dourado */
+    .texto-dourado {
       background: linear-gradient(45deg, var(--cor-dourado-1), var(--cor-dourado-2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -60,6 +75,11 @@
       color: transparent;
     }
     
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+    }
+
     h2 {
       text-align: center;
       font-size: 2.5rem;
@@ -71,19 +91,19 @@
     ============================================
     */
 
-    /* Herói - Seção de Apresentação */
     .hero {
       display: flex;
       align-items: center;
       gap: 40px;
-      padding-top: 100px; /* Reduzido para menos espaço no topo */
+      padding-top: 100px;
       padding-bottom: 40px;
     }
 
     .hero-imagem img {
       width: 100%;
       max-width: 320px;
-      border-radius: 12px; /* Retângulo com cantos suaves */
+      height: auto;
+      border-radius: 12px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.08);
     }
 
@@ -91,15 +111,11 @@
       flex: 1;
     }
 
-    .hero-texto h1 {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
-    }
-
     .hero-texto .subtitulo {
       font-size: 1.5rem;
       font-weight: 400;
-      color: var(--cor-verde);
+      color: var(--cor-verde-forte);
+      margin-top: 10px;
       margin-bottom: 20px;
     }
 
@@ -112,7 +128,6 @@
     .hero-texto .experiencia p {
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--cor-texto);
     }
 
     .hero-texto .experiencia span {
@@ -121,14 +136,71 @@
       font-weight: 300;
     }
 
+    /* Seção Horários */
+    .horarios {
+        padding: 60px 0;
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .horarios-box {
+      background-color: #fff;
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .dias-titulo {
+      font-size: 1.9rem; /* FONTE REDUZIDA */
+      margin-bottom: 25px;
+      line-height: 1.3;
+    }
+    
+    .horarios-grid {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .horario-slot {
+      flex: 1;
+    }
+    
+    .horario-slot .emoji {
+      font-size: 1.8rem;
+    }
+    
+    .horario-slot .atividade {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+    
+    .horario-slot .hora {
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+    
+    .modalidade-footer {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 20px;
+      font-weight: 400;
+      color: var(--cor-verde-forte);
+      font-size: 1.3rem;
+      font-family: 'Playfair Display', serif;
+    }
+
     /* Seção Local e Mapa */
     .local-mapa {
       display: flex;
       align-items: center;
       gap: 40px;
-      padding: 40px 0;
+      padding: 60px 0;
       border-top: 1px solid rgba(0,0,0,0.05);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
     .local-texto {
@@ -136,9 +208,7 @@
     }
 
     .local-texto h3 {
-        font-family: 'Playfair Display', serif;
-        color: var(--cor-verde);
-        font-size: 1.8rem;
+        font-size: 2.0rem;
         margin-bottom: 10px;
     }
 
@@ -148,7 +218,7 @@
     
     .mapa-container {
         flex-basis: 50%;
-        height: 250px;
+        height: 300px;
     }
 
     .mapa-container iframe {
@@ -159,73 +229,16 @@
         box-shadow: 0 15px 40px rgba(0,0,0,0.08);
     }
 
-
-    /* Seção Horários (Rework) */
-    .horarios {
-        padding: 60px 0;
-        text-align: center;
-    }
-
-    .horarios-box {
-      background-color: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .horarios-box .dias {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--cor-verde);
-      margin-bottom: 5px;
-    }
-    
-    .horarios-box .modalidade {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--cor-texto);
-      margin-bottom: 25px;
-    }
-    
-    .horarios-lista {
-      list-style: none;
-      text-align: left;
-      display: table;
-      margin: 0 auto;
-    }
-    
-    .horarios-lista li {
-      display: table-row;
-    }
-    
-    .horarios-lista li span {
-      display: table-cell;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-    }
-
-    .horarios-lista li span.hora {
-      font-weight: 600;
-      color: var(--cor-verde);
-    }
-
-
     /* Seção CTA - Chamada para Ação */
     .cta {
       text-align: center;
-      padding: 40px 20px 60px 20px;
-    }
-
-    .cta h2 {
-        font-size: 2.2rem;
-        margin-bottom: 25px;
+      padding: 60px 20px;
+      border-top: 1px solid rgba(0,0,0,0.05);
     }
 
     .cta-botao {
       display: inline-block;
-      background: linear-gradient(45deg, var(--cor-laranja), #ff9a4a);
+      background: linear-gradient(45deg, var(--cor-verde-claro-1), var(--cor-verde-claro-2));
       color: #fff;
       padding: 15px 35px;
       border-radius: 50px;
@@ -233,12 +246,12 @@
       font-size: 1.2rem;
       font-weight: 600;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 20px rgba(230, 126, 34, 0.4);
+      box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
     }
 
     .cta-botao:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
     }
 
     /* Rodapé */
@@ -268,20 +281,21 @@
         text-align: center;
       }
       .hero-texto h1 { font-size: 2.8rem; }
-      .hero-texto .subtitulo { font-size: 1.2rem; }
-      .hero-texto .experiencia { justify-content: center; }
+      
+      .horarios-grid {
+        flex-direction: column;
+        gap: 30px;
+      }
 
       .local-mapa {
         flex-direction: column;
+        text-align: center;
       }
 
       .mapa-container {
         width: 100%;
-        margin-top: 20px;
+        margin-top: 30px;
       }
-
-      .horarios-box { padding: 30px 20px; }
-      h2 { font-size: 2rem; }
     }
 
   </style>
@@ -291,10 +305,10 @@
   <div class="container">
     <header class="hero fade-in-section">
       <div class="hero-imagem">
-        <img src="gabriel-foto.png" alt="Foto do professor de yoga Gabriel Shisil" />
+        <img src="gabriel-foto.png" alt="Foto do professor de yoga Gabriel Shisil" width="320" height="320" />
       </div>
       <div class="hero-texto">
-        <h1>Gabriel Shisil</h1>
+        <h1 class="texto-dourado">Gabriel Shisil</h1>
         <p class="subtitulo">Especialista em Yoga e Meditação</p>
         <p>Aulas e terapias para aprimorar sua saúde física, emocional e mental, trazendo mais força, flexibilidade e conexão para sua vida.</p>
         <div class="experiencia">
@@ -305,33 +319,44 @@
     </header>
 
     <main>
+      <section class="horarios fade-in-section">
+        <div class="horarios-box">
+            <h3 class="dias-titulo texto-dourado">Aulas Online e Presenciais</h3>
+            <div class="horarios-grid">
+                <div class="horario-slot">
+                    <span class="emoji">🧘</span>
+                    <p class="atividade">Yoga</p>
+                    <p class="hora">08:00</p>
+                </div>
+                <div class="horario-slot">
+                    <span class="emoji">🪷</span>
+                    <p class="atividade">Meditação</p>
+                    <p class="hora">09:00</p>
+                </div>
+                <div class="horario-slot">
+                    <span class="emoji">🧘</span>
+                    <p class="atividade">Yoga</p>
+                    <p class="hora">18:00</p>
+                </div>
+            </div>
+            <p class="modalidade-footer">Terças e Quintas</p>
+        </div>
+      </section>
+
       <section class="local-mapa fade-in-section">
         <div class="local-texto">
-            <h3>Local das Aulas</h3>
+            <h3 class="texto-dourado">Localização</h3>
             <p><strong>Clube Náutico Mandala</strong></p>
             <p>Av. Pref. Dulcídio Cardoso, 777 - Barra da Tijuca, Rio de Janeiro - RJ, 22620-310</p>
         </div>
         <div class="mapa-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.979148281144!2d-43.3421598246875!3d-23.02446897917208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9966b445555555%3A0x5d68379a9508c50e!2sAv.%20Pref.%20Dulc%C3%ADdio%20Cardoso%2C%20777%20-%20Barra%20da%20Tijuca%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022620-310!5e0!3m2!1spt-BR!2sbr!4v1721835698028!5m2!1spt-BR!2sbr" 
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </section>
-
-      <section class="horarios fade-in-section">
-        <h2>Grade de Horários</h2>
-        <div class="horarios-box">
-            <p class="dias">Terças e Quintas</p>
-            <p class="modalidade">Aulas Online e Presenciais</p>
-            <ul class="horarios-lista">
-              <li><span class="hora">08:00</span><span>Yoga</span></li>
-              <li><span class="hora">09:00</span><span>Meditação</span></li>
-              <li><span class="hora">18:00</span><span>Yoga</span></li>
-            </ul>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.0480392095876!2d-43.35121502480036!3d-23.02196884211153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd980d07a1683%3A0x28c3132743815a5!2sAv.%20Pref.%20Dulc%C3%ADdio%20Cardoso%2C%20777%20-%20Barra%20da%20Tijuca%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022620-310!5e0!3m2!1spt-BR!2sbr!4v1721844331450!5m2!1spt-BR!2sbr" 
+              width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </section>
 
       <section class="cta fade-in-section">
-        <h2>Transforme seu dia em um momento só seu!</h2>
         <a href="https://wa.me/5521983369132" target="_blank" class="cta-botao">
           Agende sua Aula Experimental
         </a>
@@ -340,14 +365,12 @@
   </div>
 
   <footer class="footer">
-    <p>&copy; 2025 Vajra Yoga. Todos os direitos reservados.</p>
+    <p>© 2025 Vajra Yoga. Todos os direitos reservados.</p>
   </footer>
 
   <script>
-    // Script para a animação de "fade-in" ao rolar a página
     document.addEventListener("DOMContentLoaded", () => {
       const sections = document.querySelectorAll('.fade-in-section');
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -358,10 +381,14 @@
       }, {
         threshold: 0.1
       });
-
       sections.forEach(section => {
         observer.observe(section);
       });
+    });
+    
+    const observer = new FontFaceObserver('Montserrat');
+    observer.load().then(() => {
+       document.documentElement.classList.add('fonts-loaded');
     });
   </script>
 
