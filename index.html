@@ -3,10 +3,356 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vajra Yoga</title>
+  <title>Vajra Yoga - por Gabriel Shisil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+    CONFIGURAÇÕES GERAIS E PALETA DE CORES
+    ============================================
+    --cor-fundo: Um bege claro, quase branco, para paz.
+    --cor-texto: Um cinza escuro, mais suave que o preto puro.
+    --cor-verde: O verde escuro para contraste e elementos de destaque.
+    --cor-dourado: Para títulos e detalhes, trazendo a energia da prosperidade.
+    --cor-laranja: Usado sutilmente, como no botão de ação.
+    */
+    :root {
+      --cor-fundo: #FDFBF8;
+      --cor-texto: #4a4a4a;
+      --cor-verde: #2d3a3a;
+      --cor-dourado: #c5a47e;
+      --cor-laranja: #E67E22;
+    }
+
+    /* Reset básico e fontes */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--cor-dourado);
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    /* ============================================
+    SEÇÕES PRINCIPAIS
+    ============================================
+    */
+
+    /* Herói - Seção de Apresentação */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      min-height: 80vh;
+    }
+
+    .hero-imagem {
+      flex: 1;
+      text-align: center;
+    }
+
+    .hero-imagem img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 50%;
+      border: 5px solid var(--cor-dourado);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .hero-texto {
+      flex: 2;
+    }
+
+    .hero-texto h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-texto .subtitulo {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--cor-verde);
+      margin-bottom: 20px;
+    }
+
+    .hero-texto .experiencia {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .hero-texto .experiencia p {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .hero-texto .experiencia span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--cor-texto);
+    }
+
+    /* Seção Local */
+    .local {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: rgba(45, 58, 58, 0.05); /* Verde bem transparente */
+      border-radius: 8px;
+    }
+
+    .local p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--cor-verde);
+    }
+
+    /* Seção Horários */
+    .horarios {
+        padding-top: 60px;
+    }
+
+    .horarios-grid {
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .dia {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      flex: 1;
+    }
+
+    .dia h3 {
+      font-size: 2rem;
+      color: var(--cor-verde);
+    }
+
+    .dia ul {
+      list-style: none;
+    }
+
+    .dia li {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .dia li strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--cor-texto);
+      font-weight: 600;
+    }
+
+    /* Seção CTA - Chamada para Ação */
+    .cta {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cta h2 {
+        font-size: 2.2rem;
+    }
+
+    .cta-botao {
+      display: inline-block;
+      background-color: var(--cor-laranja);
+      color: #fff;
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+    }
+
+    .cta-botao:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5);
+    }
+
+    /* Rodapé */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /*
+    ============================================
+    ANIMAÇÃO DE SCROLL E RESPONSIVIDADE
+    ============================================
+    */
+
+    /* Animação */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Responsividade para celulares */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+        padding-top: 40px;
+      }
+      
+      .hero-texto {
+        order: 2;
+      }
+      
+      .hero-imagem {
+        order: 1;
+        margin-bottom: 20px;
+      }
+
+      .hero-texto h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero-texto .subtitulo {
+        font-size: 1.2rem;
+      }
+
+      .hero-texto .experiencia {
+        justify-content: center;
+      }
+
+      .horarios-grid {
+        flex-direction: column;
+      }
+    }
+
+  </style>
 </head>
 <body>
-  <h1>Bem-vindo ao Vajra Yoga</h1>
-  <p>Site em construção</p>
+
+  <header class="container">
+    <section class="hero">
+      <div class="hero-imagem fade-in-section">
+        <img src="gabriel-foto.png" alt="Foto do professor de yoga Gabriel Shisil" />
+      </div>
+      <div class="hero-texto fade-in-section">
+        <h1>Gabriel Shisil</h1>
+        <p class="subtitulo">Especialista em Yoga e Meditação</p>
+        <p>Aulas e terapias para aprimorar sua saúde física, emocional e mental, trazendo mais força, flexibilidade e conexão para sua vida.</p>
+        <div class="experiencia">
+          <p>+3.000 <span>alunos atendidos</span></p>
+          <p>+40 <span>anos de experiência</span></p>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="local fade-in-section">
+        <p><strong>Aulas presenciais:</strong> Clube Náutico Mandala, Barra da Tijuca, Rio de Janeiro</p>
+      </section>
+
+      <section class="horarios fade-in-section">
+        <h2>Grade de Horários</h2>
+        <div class="horarios-grid">
+          <div class="dia">
+            <h3>Terças-feiras</h3>
+            <ul>
+              <li><strong>Yoga</strong> 08:00</li>
+              <li><strong>Meditação</strong> 09:00</li>
+              <li><strong>Yoga</strong> 18:00</li>
+            </ul>
+          </div>
+          <div class="dia">
+            <h3>Quintas-feiras</h3>
+            <ul>
+              <li><strong>Yoga</strong> 08:00</li>
+              <li><strong>Meditação</strong> 09:00</li>
+              <li><strong>Yoga</strong> 18:00</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta fade-in-section">
+        <h2>Transforme sua semana com um momento só seu.</h2>
+        <a href="https://wa.me/5521983369132" target="_blank" class="cta-botao">
+          Agende sua Aula Experimental
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Vajra Yoga. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Script para a animação de "fade-in" ao rolar a página
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll('.fade-in-section');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1 // A animação começa quando 10% do elemento está visível
+      });
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
 </body>
 </html>
